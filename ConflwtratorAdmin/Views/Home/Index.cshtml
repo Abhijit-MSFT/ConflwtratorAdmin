@@ -1,0 +1,276 @@
+﻿@model ConflwtratorAdmin.Models.ApplicationsConfiguration
+
+@using System.Security.Principal
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link href="~/css/index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <!-- Stepper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css">
+    <title>ConFLWigurator - Teams FLW Demo App Provisioning</title>
+    
+</head>
+
+<body>
+    <div>
+
+        <div class="head d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
+            <img alt="Microsoft" title="Microsoft" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI0LjAuMiwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxMzguMyA1Ni43IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMzguMyA1Ni43OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cgkuc3Qxe2ZpbGw6I0YyNTAyMjt9Cgkuc3Qye2ZpbGw6IzdGQkEwMDt9Cgkuc3Qze2ZpbGw6IzAwQTRFRjt9Cgkuc3Q0e2ZpbGw6I0ZGQjkwMDt9Cgkuc3Q1e2ZpbGw6bm9uZTt9Cjwvc3R5bGU+Cjx0aXRsZT5NaWNyb3NvZnRfTG9nbzwvdGl0bGU+CjxnPgoJPGcgaWQ9IkxheWVyXzJfMl8iPgoJCTxnIGlkPSJNUy1zeW1ib2xfMV8iPgoJCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNjAuMSwyMS41djEzLjdoLTIuNFYyNC41aC0wLjFsLTQuMiwxMC43aC0xLjVsLTQuMy0xMC43aC0wLjF2MTAuN2gtMi4yVjIxLjVoMy40bDQsMTAuMWgwLjFsNC4xLTEwLjFINjAuMQoJCQkJeiBNNjIuMSwyMi42YzAtMC40LDAuMi0wLjgsMC41LTFjMC42LTAuNiwxLjQtMC42LDIsMGMwLjMsMC4zLDAuNCwwLjYsMC40LDFzLTAuMiwwLjgtMC40LDFjLTAuMywwLjMtMC43LDAuNC0xLjEsMC40CgkJCQlzLTAuOC0wLjItMS0wLjRDNjIuMiwyMy4yLDYyLjEsMjIuOSw2Mi4xLDIyLjZ6IE02NC42LDI1LjNWMzVoLTIuM3YtOS43SDY0LjZ6IE03MS43LDMzLjVjMC40LDAsMC44LTAuMSwxLjEtMC4zCgkJCQljMC40LTAuMiwwLjgtMC40LDEuMS0wLjd2Mi4xYy0wLjQsMC4zLTAuOSwwLjQtMS4yLDAuNWMtMC41LDAuMS0xLjEsMC4yLTEuNSwwLjJjLTIuNiwwLjEtNC43LTEuOS00LjktNC41YzAtMC4yLDAtMC4zLDAtMC40CgkJCQljLTAuMS0xLjQsMC41LTIuOSwxLjMtMy45YzEtMS4xLDIuMi0xLjUsMy45LTEuNWMwLjUsMCwwLjksMC4xLDEuMywwLjJzMC44LDAuMiwxLjEsMC40djIuM2MtMC40LTAuMy0wLjctMC41LTEuMS0wLjYKCQkJCWMtMC40LTAuMi0wLjgtMC4yLTEuMS0wLjJjLTAuOS0wLjEtMS42LDAuMy0yLjIsMC45Yy0wLjYsMC43LTAuOSwxLjUtMC45LDIuNGMtMC4xLDAuOSwwLjMsMS43LDAuOSwyLjMKCQkJCUM3MC4xLDMzLjMsNzAuOCwzMy41LDcxLjcsMzMuNXogTTgwLjUsMjUuMmMwLjIsMCwwLjQsMCwwLjUsMC4xYzAuMiwwLDAuMywwLjEsMC40LDAuMXYyLjNjLTAuMi0wLjEtMC40LTAuMi0wLjYtMC4zCgkJCQljLTAuMy0wLjEtMC42LTAuMi0wLjktMC4xYy0wLjYsMC0xLjEsMC4zLTEuNCwwLjhjLTAuNCwwLjUtMC42LDEuMi0wLjYsMi4ydjQuOWgtMi4ydi05LjhINzh2MS41aDAuMWMwLjItMC41LDAuNi0xLDEtMS4yCgkJCQlDNzkuNCwyNS4zLDc5LjksMjUuMSw4MC41LDI1LjJMODAuNSwyNS4yeiBNODEuNSwzMC40YzAtMS42LDAuNS0zLDEuMy0zLjhjMS0xLDIuMi0xLjQsMy44LTEuNGMxLjUsMCwyLjgsMC41LDMuNiwxLjMKCQkJCXMxLjMsMi4xLDEuMywzLjdTOTEsMzMuMSw5MC4yLDM0Yy0wLjgsMC45LTIuMywxLjQtMy44LDEuNHMtMi44LTAuNS0zLjYtMS4zQzgxLjksMzMuMiw4MS41LDMxLjksODEuNSwzMC40TDgxLjUsMzAuNHoKCQkJCSBNODMuOSwzMC4zYzAsMS4xLDAuMywxLjgsMC43LDIuM2MwLjUsMC42LDEuMiwwLjksMiwwLjljMC44LDAuMSwxLjQtMC4zLDEuOS0wLjljMC41LTAuNiwwLjctMS4zLDAuNy0yLjRzLTAuMy0xLjgtMC43LTIuNAoJCQkJYy0wLjUtMC42LTEuMS0wLjktMS45LTAuOWMtMC44LTAuMS0xLjQsMC4zLTEuOSwwLjlDODQuMSwyOC41LDgzLjksMjkuMyw4My45LDMwLjNMODMuOSwzMC4zeiBNOTUsMjcuOWMwLDAuMywwLjEsMC42LDAuMywwLjgKCQkJCWMwLjUsMC4zLDAuOSwwLjYsMS40LDAuOGMwLjgsMC4zLDEuNCwwLjcsMS45LDEuMmMwLjQsMC41LDAuNiwxLjEsMC42LDEuNmMwLDAuOS0wLjQsMS43LTEuMSwyLjJjLTAuOCwwLjYtMS42LDAuOS0yLjksMC45CgkJCQljLTAuNSwwLTEtMC4xLTEuMy0wLjJjLTAuNS0wLjEtMC45LTAuMi0xLjItMC40di0yLjJjMC41LDAuMywwLjksMC42LDEuMywwLjdjMC41LDAuMiwwLjksMC4zLDEuMywwLjNjMC40LDAuMSwwLjgtMC4xLDEuMS0wLjMKCQkJCWMwLjMtMC4yLDAuNC0wLjUsMC40LTAuOHMtMC4yLTAuNi0wLjQtMC44Yy0wLjUtMC40LTEtMC42LTEuNC0wLjhjLTAuNy0wLjMtMS4zLTAuNy0xLjgtMS4yYy0wLjQtMC41LTAuNi0xLjEtMC42LTEuNwoJCQkJYzAtMC45LDAuNC0xLjYsMS4xLTIuMmMwLjgtMC42LDEuNy0wLjksMi44LTAuOWMwLjQsMCwwLjgsMC4xLDEuMSwwLjFjMC40LDAuMSwwLjgsMC4yLDEuMSwwLjN2Mi4yYy0wLjQtMC4yLTAuNy0wLjQtMS4xLTAuNgoJCQkJcy0wLjgtMC4yLTEuMi0wLjJjLTAuNCwwLTAuOCwwLjEtMS4xLDAuM0M5NS4xLDI3LjQsOTUsMjcuNiw5NSwyNy45TDk1LDI3Ljl6IE0xMDAuMSwzMC40YzAtMS42LDAuNS0zLDEuMy0zLjgKCQkJCWMxLTEsMi4yLTEuNCwzLjgtMS40YzEuNSwwLDIuOCwwLjUsMy42LDEuM2MwLjksMC45LDEuMywyLjEsMS4zLDMuN3MtMC41LDIuOS0xLjMsMy44Yy0wLjksMS0yLjEsMS40LTMuNywxLjQKCQkJCWMtMS41LDAtMi44LTAuNS0zLjYtMS4zQzEwMC42LDMzLjIsMTAwLjEsMzEuOSwxMDAuMSwzMC40eiBNMTAyLjUsMzAuM2MwLDEuMSwwLjMsMS44LDAuNywyLjNjMC41LDAuNiwxLjIsMC45LDEuOSwwLjkKCQkJCWMwLjgsMC4xLDEuNC0wLjMsMS45LTAuOWMwLjUtMC42LDAuNy0xLjMsMC43LTIuNHMtMC4zLTEuOC0wLjctMi40Yy0wLjUtMC42LTEuMS0wLjktMS45LTAuOWMtMC44LTAuMS0xLjQsMC4zLTEuOSwwLjkKCQkJCUMxMDIuOCwyOC41LDEwMi41LDI5LjMsMTAyLjUsMzAuM0wxMDIuNSwzMC4zeiBNMTE3LjksMjcuMmgtMy40djcuOWgtMi4zdi03LjloLTEuNnYtMS45aDEuNlYyNGMtMC4xLTEsMC40LTEuOCwxLjEtMi41CgkJCQlzMS42LTEuMSwyLjYtMWMwLjMsMCwwLjUsMCwwLjgsMC4xYzAuMiwwLDAuNCwwLjEsMC42LDAuMnYyYy0wLjItMC4xLTAuMy0wLjEtMC40LTAuMmMtMC4yLTAuMS0wLjUtMC4xLTAuNy0wLjEKCQkJCWMtMC41LTAuMS0wLjksMC4yLTEuMSwwLjVjLTAuMywwLjQtMC41LDAuOS0wLjQsMS4zdjEuMWgzLjR2LTIuMmwyLjMtMC43djNoMi4zdjEuOWgtMi4zVjMyYzAsMC42LDAuMSwxLjEsMC4zLDEuMgoJCQkJYzAuMywwLjMsMC43LDAuNCwxLjEsMC40YzAuMiwwLDAuNC0wLjEsMC41LTAuMWMwLjItMC4xLDAuNC0wLjIsMC41LTAuM3YxLjljLTAuMywwLjEtMC41LDAuMi0wLjgsMC4zYy0wLjQsMC4xLTAuNywwLjEtMS4xLDAuMQoJCQkJYy0xLDAtMS43LTAuMy0yLjItMC44Yy0wLjUtMC42LTAuOC0xLjMtMC44LTIuM1YyNy4yeiIvPgoJCQk8cmVjdCB4PSIxNS43IiB5PSIxNi45IiBjbGFzcz0ic3QxIiB3aWR0aD0iMTAuOCIgaGVpZ2h0PSIxMC44Ii8+CgkJCTxyZWN0IHg9IjI3LjciIHk9IjE2LjkiIGNsYXNzPSJzdDIiIHdpZHRoPSIxMC44IiBoZWlnaHQ9IjEwLjgiLz4KCQkJPHJlY3QgeD0iMTUuNyIgeT0iMjkiIGNsYXNzPSJzdDMiIHdpZHRoPSIxMC44IiBoZWlnaHQ9IjEwLjgiLz4KCQkJPHJlY3QgeD0iMjcuNyIgeT0iMjkiIGNsYXNzPSJzdDQiIHdpZHRoPSIxMC44IiBoZWlnaHQ9IjEwLjgiLz4KCQk8L2c+Cgk8L2c+Cgk8cmVjdCB5PSIwIiBjbGFzcz0ic3Q1IiB3aWR0aD0iMTM4LjMiIGhlaWdodD0iNTYuNyIvPgo8L2c+Cjwvc3ZnPgo="
+                 class="ms-logo d-inline-block align-items-center">
+            <h6 class="my-0 mr-md-auto"> ConFLWigurator - Teams FLW Demo App Provisioning</h6>
+            <nav class="my-2 my-md-0 mr-md-3">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="p-2 text-white">Welcome  @User.Identity.Name.Substring(0, (User.Identity.Name).IndexOf('@')).ToUpper()</span>
+                    <a class="p-2 text-white" asp-area="AzureAD" asp-controller="Account" asp-action="SignOut">Sign out</a>
+                }
+                else
+                {
+                    <a class="p-2 text-white" asp-area="AzureAD" asp-controller="Account" asp-action="SignIn">Sign in</a>
+                }
+            </nav>
+        </div>
+
+        <div class="create-incident container-fluid">
+            <div class="stepwizard">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                        <a href="#step-1" type="button" id="btnApplicationDetails" class="btn btn-default btn-circle ">
+                            <i class="fas fa-check"></i>
+                        </a>
+                        <span class="nt active">Application details</span>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-2" type="button" class="btn btn-default btn-circle" id="btnTheme" disabled="disabled" onclick="checkBTNApplicationDetails()">
+                            <i class="fas fa-check"></i>
+                        </a>
+                        <span class="nt">Themes</span>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-3" type="button" onclick="checkBtnTheme()" class="btn btn-default btn-circle" id="lobApps" disabled="disabled">
+                            @*<i class="fas fa-exclamation"></i>*@
+                            <i class="fas fa-check"></i>
+                        </a>
+                        <span class="nt">
+                            Lob
+                            applications
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <form role="form" id="mainForm" action="" method="post">
+                <div class="row setup-content" id="step-1">
+                    <div class="col-xs-6 col-md-offset-3" style="margin-top: 3%;">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control fc" placeholder="App Name" onchange="checkBTNApplicationDetails()" id="displayName" name="AppDisplayName" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control fc" placeholder="Desciption" onchange="checkBTNApplicationDetails()" id="appDesc" name="AppDescription" required />
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <label class="custom-file-label choose" for="customFile">
+                                        Provide Banner
+                                        Image
+                                    </label>
+                                    <input type="file" class="custom-file-input" id="customFile" name="AppBannerURL" />
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <label class="custom-file-label choose" for="customFile">Provide logo</label>
+                                    <input type="file" class="custom-file-input" id="customFile" name="LogoURL" />
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn nextBtn pull-right float-right" type="button" onclick="checkBTNApplicationDetails()">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row setup-content" id="step-2">
+                    <div class="col-xs-6 col-md-offset-3" style="margin-top: 3%;">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <select class="custom-select fc" onchange="setThemescolor()" placeholder="Select Theme" name="FontFamily" id="FontFamily" required>
+                                    <option selected="">Select Font Family</option>
+                                    <option value="Arial">Arial</option>
+                                    <option value="Calibri">Calibri</option>
+                                    <option value="Courier">Courier</option>
+                                    <option value="Comic_Sans">Comic Sans</option>
+                                    <option value="Helvetica">Helvetica</option>
+                                    <option value="News_Gothic_MT">News Gothic MT</option>
+                                    <option value="Tahoma">Tahoma</option>
+                                    <option value="Times_New_Roman">Times New Roman</option>
+                                    <option value="Verdana">Verdana</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="custom-select fc"  onchange="setThemescolor()" placeholder="Select Font Color" name="FontColor" id="fontcolor" required>
+                                    <option selected="">Select Font Color</option>
+                                    <option value="Blue">Default</option>
+                                    <option value="Blue">Blue</option>
+                                    <option value="Grey">Grey</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Black">Black</option>
+                                    <option value="Green">Green</option>
+                                    <option value="Pink">Pink</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn nextBtn pull-right float-right" type="button" onclick="checkBtnTheme()">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="row setup-content" id="step-3">
+                    <div class="col-xs-6 col-md-offset-3" style="margin-top: 2%;">
+                        <div class="col-md-12">
+                            <button class="btn nextBtn pull-right" type='button' style="margin-bottom: 10px;">
+                                Clear all
+                            </button>
+                            <span class="size float-right">Image size:- 80px(w) X 80px(h)</span>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input myCheckbox" id="i1" onClick="return KeepCount()" name="Payslips" value="Payslips">
+                                <label class="custom-control-label" for="i1">Payslips</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file" id="b1">
+                                    <label class="custom-file-label choose ch" for="customFile" name="AppOneImag">
+                                        Select background image
+                                        for payslips
+                                    </label>
+                                    <input type="file" class="custom-file-input " id="customFile" name="PayslipsLogoURL"
+                                           placeholder="Provide logo" />
+                                </div>
+                            </div>
+
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input myCheckbox" id="i2" onClick="return KeepCount()">
+                                <label class="custom-control-label " for="i2">Forms</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file" id="b2">
+                                    <label class="custom-file-label choose ch" for="customFile">
+                                        Select background image
+                                        for forms
+                                    </label>
+                                    <input type="file" class="custom-file-input " id="customFile" name="FormsLogoURL"
+                                           placeholder="Provide logo" />
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input myCheckbox" id="i3" onClick="return KeepCount()">
+                                <label class="custom-control-label " for="i3">Leads</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file" id="b3">
+                                    <label class="custom-file-label choose ch" for="customFile">
+                                        Select background image
+                                        for Leads
+                                    </label>
+                                    <input type="file" class="custom-file-input " id="customFile" name="LeadsLogoURL"
+                                           placeholder="Provide logo" />
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input myCheckbox" id="i4" onClick="return KeepCount()">
+                                <label class="custom-control-label " for="i4">Career</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file" id="b4">
+                                    <label class="custom-file-label choose ch" for="customFile">
+                                        Select background image
+                                        for carrier
+                                    </label>
+                                    <input type="file" class="custom-file-input " id="customFile" name="CareerLogoURL"
+                                           placeholder="Provide logo" />
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input myCheckbox" id="i5" onClick="return KeepCount()">
+                                <label class="custom-control-label " for="i5">Discounts</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file" id="b5">
+                                    <label class="custom-file-label choose ch" for="customFile">
+                                        Select background image
+                                        for discounts
+                                    </label>
+                                    <input type="file" class="custom-file-input " id="customFile" name="DiscountsLogoURL"
+                                           placeholder="Provide logo" />
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input myCheckbox" id="i6" onClick="return KeepCount()">
+                                <label class="custom-control-label " for="i6">Kudos</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file" id="b6">
+                                    <label class="custom-file-label choose ch" for="customFile">
+                                        Select background image
+                                        for kudos
+                                    </label>
+                                    <input type="file" class="custom-file-input " id="customFile" name="KudosLogoURL"
+                                           placeholder="Provide logo" />
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input myCheckbox" id="i7">
+                                <label class="custom-control-label " for="i7">Benefits</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file" id="b7">
+                                    <label class="custom-file-label choose ch" for="customFile">
+                                        Select background image
+                                        for benefits
+                                    </label>
+                                    <input type="file" class="custom-file-input " id="customFile" name="filename"
+                                           placeholder="Provide logo" />
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input myCheckbox" id="i8" onClick="return KeepCount()" name="Payslips" value="Payslips">
+                                <label class="custom-control-label" for="i8">News Feed</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file" id="b8">
+                                    <input type="text" class="form-control fc" placeholder="News feed URL" id="NewsFeed1" name="NewsFeedOne" />
+                                    <input type="text" class="form-control fc" placeholder="News feed URL" id="NewsFeed2" name="NewsFeedTwo" />
+                                    <input type="text" class="form-control fc" placeholder="News feed URL" id="NewsFeed3" name="NewsFeedThree" />
+                                    <input type="text" class="form-control fc" placeholder="News feed URL" id="NewsFeed4" name="NewsFeedFour" />
+                                    <input type="text" class="form-control fc" placeholder="News feed URL" id="NewsFeed5" name="NewsFeedFive" />
+                                </div>
+                            </div>
+
+                            <input type="submit" value="Submit" class="btn nextBtn pull-right float-right" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Stepper JavaScript -->
+    <script src="https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js"></script>
+    <script src="~/js/index.js"></script>
+</body>
+
+</html>

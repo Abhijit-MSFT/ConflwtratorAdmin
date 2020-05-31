@@ -1,0 +1,200 @@
+﻿body {
+    background-color: #f4f4f4;
+}
+
+.head {
+    background-color: #0078d4;
+    height: 60px;
+    width: auto;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+.ms-logo {
+    max-width: 200px;
+    max-height: 48px;
+    border-style: none !important;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.create-incident {
+    /*margin: 5rem 0 0 0;*/
+    padding-left: 7rem;
+}
+
+.nt {
+    cursor: pointer;
+    font-size: 12px;
+}
+
+    .nt:hover {
+        color: blue;
+    }
+
+span.nt:active {
+    color: rgb(221, 94, 10);
+    font-weight: bold;
+}
+
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.fc {
+    border-radius: 0;
+    border-width: 0 0 2px 0;
+    border-style: none none solid none;
+    box-shadow: none !important;
+    color: #495057;
+    outline: 0;
+}
+
+    .fc:focus {
+        border-color: #6264a7;
+    }
+
+.custom-select,
+::placeholder {
+    font-size: 12px;
+}
+
+.custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    margin-bottom: 0;
+}
+
+.choose {
+    border: 0;
+    border-radius: 0;
+    border-color: #ccc;
+    border-width: 0 0 2px 0;
+    border-style: none none solid none;
+    box-shadow: none;
+    font-size: small;
+    cursor: pointer;
+}
+
+.ch {
+    margin-left: 2%;
+}
+
+.custom-file-input {
+    cursor: pointer;
+}
+.dangerinput {
+    border-bottom: 2px solid red !important;
+}
+.form-group {
+    margin-bottom: 0.5rem;
+    /*display:inline-flex;*/
+}
+
+/*.size {
+    display: inline-flex;
+    font-size:x-small;
+}*/
+
+.stepwizard {
+    display: table;
+    width: 40%;
+    margin-top: 2%;
+}
+
+.setup-content {
+    width: 70%;
+    margin: 2rem;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+    .stepwizard-step {
+        display: table-cell;
+        text-align: center;
+        position: relative;
+    }
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+
+.nextBtn {
+    background-color: #0078d4;
+    font-size: 12px;
+    border-radius: 0;
+    color: #ffffff;
+}
+
+    .nextBtn:focus,
+    .btn:focus,
+    .btn-primary.focus,
+    .btn-primary:focus {
+        box-shadow: none;
+        border-color: none;
+    }
+
+.btn:hover {
+    color: navy;
+    text-decoration: none;
+}
+
+.custom-control-label {
+    font-size: 12px;
+}
+
+    .custom-control-label::before,
+    .custom-control-label::after {
+        height: 12px;
+        width: 12px;
+    }
+
+.form-group {
+    width: 60%;
+}
+
+@media (max-width: 425px) {
+    .ms-logo {
+        max-width: 130px;
+        position: absolute;
+    }
+
+    .create-incident {
+        margin: 4rem 0 0 0;
+        padding: 0;
+    }
+
+    .stepwizard {
+        width: 100%;
+        margin-top: 5%;
+    }
+
+    .setup-content {
+        width: auto;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+}
+

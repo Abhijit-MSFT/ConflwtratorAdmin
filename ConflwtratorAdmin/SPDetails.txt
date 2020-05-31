@@ -1,0 +1,24 @@
+flwappadmin
+client id
+fe90e427-dc9b-4789-b7ff-d716c6386da2
+sec
+ZCaKkIwlO4k6D4Pdx7ZGFbBrslNQOEXM8WLXMQeHOog=
+ZCaKkIwlO4k6D4Pdx7ZGFbBrslNQOEXM8WLXMQeHOog%3D
+
+
+ten id
+89502398-d62b-4056-9d65-f89c93b38ca9
+
+Body
+grant_type=client_credentials&
+client_id=fe90e427-dc9b-4789-b7ff-d716c6386da2@89502398-d62b-4056-9d65-f89c93b38ca9&
+client_secret=ZCaKkIwlO4k6D4Pdx7ZGFbBrslNQOEXM8WLXMQeHOog%3D&
+resource=00000003-0000-0ff1-ce00-000000000000/m365x294696.sharepoint.com@89502398-d62b-4056-9d65-f89c93b38ca9
+
+https://teams.microsoft.com/l/team/19%3Ab1c98c14abed42c3801009d718b61f5f%40thread.skype/conversations?groupId=4c9f9ce9-e247-4ff9-aa43-2ae459cb2563&tenantId=89502398-d62b-4056-9d65-f89c93b38ca9
+
+<AppPermissionRequests AllowAppOnlyPolicy="true">
+    <AppPermissionRequest Scope="http://sharepoint/content/sitecollection/web" Right="Write" />
+</AppPermissionRequests>
+
+
